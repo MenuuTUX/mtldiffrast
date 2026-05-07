@@ -1,0 +1,44 @@
+<<<<<<< HEAD
+# macOS
+.DS_Store
+
+=======
+>>>>>>> 077888c (important)
+# Xcode
+*.xcuserstate
+xcuserdata/
+DerivedData/
+
+<<<<<<< HEAD
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Build artifacts
+=======
+# Build results
+.build/
+>>>>>>> 077888c (important)
+build/
+*.app
+*.ipa
+*.dSYM
+*.swiftmodule
+*.swiftdoc
+*.metallib
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+<<<<<<< HEAD
+=======
+
+.DS_Store
+>>>>>>> 077888c (important)
