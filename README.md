@@ -4,13 +4,6 @@ MTLDiffRast is a Swift Package that implements differentiable rasterization prim
 
 ## Features
 
-<<<<<<< HEAD
-- **Pure Swift API** - Public surface is Swift only; no Objective-C bridging required. Compute kernels are written in Metal Shading Language and shipped as `.metal` source files (compiled at runtime).
-- **No external dependencies** - Just `Metal`, `simd`, `Foundation`.
-- **Metal Accelerated** - GPU compute shaders for forward, backward, interpolation, and antialiasing.
-- **Differentiable** - Backward pass produces gradients of the depth output w.r.t. clip-space `z` and `w` (silhouette/coverage gradients are not yet implemented — see *Status* below).
-- **Modern API** - Swift-native interface with proper error handling.
-=======
 - Forward triangle rasterization in clip space
 - Barycentric output and barycentric screen-space derivatives
 - Rasterization backward pass for vertex-position gradients
@@ -22,7 +15,6 @@ MTLDiffRast is a Swift Package that implements differentiable rasterization prim
 - GPU display-texture output for low-overhead MetalKit viewers
 - macOS demo app backed by the package implementation
 - Xcode demo app with Swift remakes of the nvdiffrast sample demos
->>>>>>> 077888c (important)
 
 ## Requirements
 
@@ -37,11 +29,7 @@ Add the package to `Package.swift`:
 
 ```swift
 dependencies: [
-<<<<<<< HEAD
-    .package(url: "https://github.com/MenuuTUX/mtldiffrast.git", from: "0.1.0")
-=======
-    .package(url: "https://github.com/yourusername/mtldiffrast-swift.git", from: "1.0.0")
->>>>>>> 077888c (important)
+    .package(url: "https://github.com/MenuuTUX/mtldiffrast.git", branch: "main")
 ]
 ```
 
@@ -140,20 +128,11 @@ Triangles with non-positive signed area after projection are culled as back-faci
 
 This package intentionally focuses on the core primitives needed for the Swift/Metal port:
 
-<<<<<<< HEAD
-#### `RasterOutput`
-- `width`, `height` - Output dimensions
-- `triangleIds` - Triangle ID per pixel (-1 if no triangle)
-- `depthBuffer` - Interpolated NDC depth per pixel
-- `barycentrics` - Screen-space barycentric coordinates per pixel, packed `[b0, b1, b2, ...]` (length `pixelCount * 3`)
-- `pixelCount` - Total number of pixels
-=======
 - no CUDA/PyTorch dependency or autograd bridge
 - no batched tensor API
 - no mipmapped/cube texture sampling
 - no antialias backward pass or topology-hash cache
 - integer triangle indices are not differentiable, so `triangleGradients` is always `nil`
->>>>>>> 077888c (important)
 
 The tests include CPU-reference parity checks, finite-difference texture-gradient checks, barycentric derivative checks, and demo build coverage.
 
@@ -179,32 +158,9 @@ swift test
 
 Build the demo:
 
-<<<<<<< HEAD
-## Status
-
-This is an early release (0.1.x). What works today:
-
-- Forward rasterization with proper depth test
-- Per-pixel barycentric coordinates exposed in `RasterOutput`
-- GPU attribute interpolation
-- Edge-aware depth-only antialiasing
-- Backward pass for the depth output: gradients flow into clip-space `z` and `w` of each vertex via atomic float accumulation
-
-Not yet implemented:
-
-- Silhouette / coverage gradients for `x` and `y` (the analogue of the AA-aware backward pass in *nvdiffrast*)
-- Texture sampling kernels (the `TextureOutput` struct is reserved for a future release)
-
-API may change before 1.0.
-
-## Examples
-
-See the `Tests/MTLDiffRastTests` directory for usage examples and test cases.
-=======
 ```bash
 xcodebuild -project MTLDiffRastDemo/MTLDiffRastDemo.xcodeproj -scheme MTLDiffRastDemo -configuration Debug build
 ```
->>>>>>> 077888c (important)
 
 ## License
 
